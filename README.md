@@ -1,7 +1,7 @@
 # unikino-flyer
 _The tool to upload the flyer on the website for lazy dudes (like me)._
 
-For the [unifilm.de](Unikino) group I have to regulary upload the weekly flyer. They are the same steps every time:
+For our local [Unikino](https://www.unikino.uni-halle.de/) I have to regulary upload the weekly flyer. They are the same steps every time:
 
 1. Login
 2. Upload Image
