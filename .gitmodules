@@ -1,0 +1,3 @@
+[submodule "UnikinoFlyer/External/MaxLib"]
+	path = UnikinoFlyer/External/MaxLib
+	url = https://github.com/Garados007/MaxLib.git
