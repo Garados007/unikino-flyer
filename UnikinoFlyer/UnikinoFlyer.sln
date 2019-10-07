@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikinoFlyer.Uploader", "UnikinoFlyer.Uploader\UnikinoFlyer.Uploader.csproj", "{E30F9EA1-71C6-43C2-8C60-4EDAFBC81F74}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{3D5B4FD3-56B2-4735-953E-BDD0434E6F08}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxLib", "External\MaxLib\MaxLib\MaxLib.csproj", "{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{E30F9EA1-71C6-43C2-8C60-4EDAFBC81F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E30F9EA1-71C6-43C2-8C60-4EDAFBC81F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E30F9EA1-71C6-43C2-8C60-4EDAFBC81F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE} = {3D5B4FD3-56B2-4735-953E-BDD0434E6F08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8DFF9C5A-760E-46E3-ADB4-95B9A5840017}
