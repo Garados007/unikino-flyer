@@ -48,7 +48,7 @@ I am living outside of the university network that is required to edit the stuff
 exists at the time when the updater will be fired. I used a cronjob for this. The complete call look like this:
 
 ```bash
-echo "<password>" || openconnect vpn1.uni-halle.de -m 1290 -u <username> -s 'vpn-slice 141.48.0.0/16 192.124.243.0/24'
+echo "<password>" | openconnect vpn1.uni-halle.de -m 1290 -u <username> --passwd-on-stdin -s 'vpn-slice 141.48.0.0/16 192.124.243.0/24'
 ```
 
 This will open the vpn tunnel and login with your credentials. With the `-s <...>` parameter the vpn tunnel will be splitted and only traffic to the university network will be sent over the vpn.
