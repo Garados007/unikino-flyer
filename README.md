@@ -37,3 +37,30 @@ The updater will regulary fired by the cronjob and checks if a job to due is fou
 If the updater is started and no jobs are to due, it will be closed immeadetly.
 
 If you want to know how a single job is processed just look at the code - it will tell you. ;)
+
+## Hardware Steps
+
+I run the updater on a Raspberry Pi with Raspberian (Linux). Some steps has to be done so the updater can be executed without any problems. This steps are only required in my setup. Your setup could be different and therefore you need different steps.
+
+### 1. Ensure you have a permanent VPN Tunnel to the University
+
+I am living outside of the university network that is required to edit the stuff online. But our university supports a vpn tunnel with the CISCO vpn connector. Therefore I installed `openconnect` and `vpn-slice` on my pi. After that i ensured that a vpn tunnel
+exists at the time when the updater will be fired. I used a cronjob for this. The complete call look like this:
+
+```bash
+echo "<password>" || openconnect vpn1.uni-halle.de -m 1290 -u <username> -s 'vpn-slice 141.48.0.0/16 192.124.243.0/24'
+```
+
+This will open the vpn tunnel and login with your credentials. With the `-s <...>` parameter the vpn tunnel will be splitted and only traffic to the university network will be sent over the vpn.
+
+### 2. For testing: make your vpn avaible for other devices in the network
+
+I used to develop and test my stuff on my working computer not the pi. But I want to use the vpn of the pi in the same network to test these. So I added the following to the pi:
+
+```bash
+iptables -A FORWARD -i eth0 -o tun1 -j ACCEPT
+iptables -A FORWARD -i tun1 -o eth0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -t nat -A POSTROUTING -o tun1 -j MASQUERADE
+```
+
+Than I saved the iptables on the pi and added the ip range to the route list of my main computer. Afterwards everything works fine.
