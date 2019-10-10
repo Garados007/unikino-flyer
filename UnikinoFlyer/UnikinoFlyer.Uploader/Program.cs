@@ -16,7 +16,8 @@ namespace UnikinoFlyer.Uploader
             //var page = await Client.CallPage(home);
 
             //await Client.UploadImage(new System.IO.FileInfo(@"C:\Users\Max\Desktop\road-sign-361514_960_720.png"), "test image 2");
-            await Client.SwitchImage(home, "1527518177_1343_0.jpg", "Dieser Text wurde durch ein Programm automatisch gesetzt");
+            await Client.SwitchImage(home, "1507797022_1343_0.jpg", "Auf jeden Fall könnt ihr euch schon auf die FZB freuen (bot)");
+            await Client.Publish(home);
         }
     }
 }

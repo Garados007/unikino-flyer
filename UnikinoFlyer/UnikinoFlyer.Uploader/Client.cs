@@ -345,5 +345,30 @@ namespace UnikinoFlyer.Uploader
                 //}));
             });
         }
+
+        public static Task Publish(Dictionary<string, object> home)
+        {
+            if (home == null) throw new ArgumentNullException(nameof(home));
+            return Run(async client =>
+            {
+                Console.WriteLine("Publish current changes");
+
+                Console.WriteLine("  Click on publish pages");
+                var conf1 = await DoValueRequest(client, home, new Dictionary<string, object>
+                {
+                    { "publishPage.x", "13" },
+                    { "publishPage.y", "14" }
+                });
+
+                Console.Write("  Publish Page");
+                var ids = conf1.Select(p => p.Key)
+                    .Where(k => k.StartsWith("publishThesePages"))
+                    .Select(k => k.Substring("publishThesePages".Length))
+                    .ToDictionary(p => "publishThesePages" + p, p => (object)p);
+                ids.Add("publishPage.x", "12");
+                ids.Add("publishPage.y", "17");
+                var conf2 = await DoValueRequest(client, conf1, ids);
+            });
+        }
     }
 }
