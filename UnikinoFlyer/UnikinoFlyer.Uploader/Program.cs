@@ -13,7 +13,10 @@ namespace UnikinoFlyer.Uploader
                 Console.Error.WriteLine("Login failed");
                 return;
             }
-            await Client.SwitchImage(home, "/im/1526578133_1343_00_111.jpg", "Dieser Text wurde durch ein Programm automatisch gesetzt");
+            //var page = await Client.CallPage(home);
+
+            //await Client.UploadImage(new System.IO.FileInfo(@"C:\Users\Max\Desktop\road-sign-361514_960_720.png"), "test image 2");
+            await Client.SwitchImage(home, "1527518177_1343_0.jpg", "Dieser Text wurde durch ein Programm automatisch gesetzt");
         }
     }
 }
