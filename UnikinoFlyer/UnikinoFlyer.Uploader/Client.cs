@@ -49,47 +49,68 @@ namespace UnikinoFlyer.Uploader
             await Run(async client => { await work(client); return 1; });
         }
 
-        private static string PrepairUpload(WebClient client, Dictionary<string, object> upload)
+        private static string PrepairUpload(WebClient client, Dictionary<string, object> upload, bool fragment = true)
         {
-            client.Headers.Set(HttpRequestHeader.ContentType, "multipart/form-data; boundary=---------------------------235981322718164");
-
-            var sb = new StringBuilder();
-            foreach (var p in upload)
+            if (fragment)
             {
-                if (p.Value is null)
-                    continue;
-                sb.AppendLine("---------------------------235981322718164");
-                if (p.Value is string)
+                client.Headers.Set(HttpRequestHeader.ContentType, "multipart/form-data; boundary=---------------------------235981322718164");
+
+                var sb = new StringBuilder();
+                foreach (var p in upload)
                 {
-                    sb.AppendLine("Content-Disposition: form-data; name=\"" + p.Key + "\"");
-                    sb.AppendLine();
-                    sb.AppendLine(p.Value.ToString());
-                }
-                else if (p.Value is FileInfo file)
-                {
-                    sb.AppendLine($"Content-Disposition: form-data; name=\"{p.Key}\"; filename=\"{file.Name}\"");
-                    var mime = MaxLib.Net.Webserver.MimeTypes.ApplicationOctetStream;
-                    switch (file.Extension.ToLower())
+                    if (p.Value is null)
+                        continue;
+                    sb.AppendLine("---------------------------235981322718164");
+                    if (p.Value is string)
                     {
-                        case ".jpg":
-                        case ".jpeg":
-                            mime = MaxLib.Net.Webserver.MimeTypes.ImageJpeg;
-                            break;
-                        case ".png":
-                        case ".pneg":
-                            mime = MaxLib.Net.Webserver.MimeTypes.ImageJpeg;
-                            break;
-                        case ".gif":
-                            mime = MaxLib.Net.Webserver.MimeTypes.ImageGif;
-                            break;
+                        sb.AppendLine("Content-Disposition: form-data; name=\"" + p.Key + "\"");
+                        sb.AppendLine();
+                        sb.AppendLine(p.Value.ToString());
                     }
-                    sb.AppendLine($"Content-Type: {mime}");
-                    sb.AppendLine();
-                    sb.AppendLine(File.ReadAllText(file.FullName));
+                    else if (p.Value is FileInfo file)
+                    {
+                        sb.AppendLine($"Content-Disposition: form-data; name=\"{p.Key}\"; filename=\"{file.Name}\"");
+                        var mime = MaxLib.Net.Webserver.MimeTypes.ApplicationOctetStream;
+                        switch (file.Extension.ToLower())
+                        {
+                            case ".jpg":
+                            case ".jpeg":
+                                mime = MaxLib.Net.Webserver.MimeTypes.ImageJpeg;
+                                break;
+                            case ".png":
+                            case ".pneg":
+                                mime = MaxLib.Net.Webserver.MimeTypes.ImageJpeg;
+                                break;
+                            case ".gif":
+                                mime = MaxLib.Net.Webserver.MimeTypes.ImageGif;
+                                break;
+                        }
+                        sb.AppendLine($"Content-Type: {mime}");
+                        sb.AppendLine();
+                        sb.AppendLine(File.ReadAllText(file.FullName));
+                    }
                 }
+                sb.AppendLine("---------------------------235981322718164--");
+                return sb.ToString();
             }
-            sb.AppendLine("---------------------------235981322718164--");
-            return sb.ToString();
+            else
+            {
+                client.Headers.Set(HttpRequestHeader.ContentType, "application/x-www-form-urlencoded");
+
+                var sb = new StringBuilder();
+                foreach (var p in upload)
+                {
+                    if (p.Value is null) continue;
+                    if (sb.Length != 0) sb.Append('&');
+                    sb.Append(System.Web.HttpUtility.UrlEncode(p.Key));
+                    sb.Append('=');
+                    if (p.Value is string)
+                        sb.Append(System.Web.HttpUtility.UrlEncode(p.Value.ToString()));
+                    else if (p.Value is FileInfo file)
+                        sb.Append(System.Web.HttpUtility.UrlEncode(File.ReadAllText(file.FullName)));
+                }
+                return sb.ToString();
+            }
         }
 
         static readonly string[] ignoreInputNames = new[] { "submit", "image", "button" };
@@ -268,18 +289,29 @@ namespace UnikinoFlyer.Uploader
             if (client == null) throw new ArgumentNullException(nameof(client));
             if (pageBase == null) throw new ArgumentNullException(nameof(pageBase));
             if (navigation == null) throw new ArgumentNullException(nameof(navigation));
-            var result = 
-                ServerEncoding.GetString(
-                    await client.UploadValuesTaskAsync(
-                        "test.php?id=2201326",
-                        MapCollection(
-                            NextPageValues(
-                                pageBase,
-                                navigation
-                            )
-                        )
-                    )
-                );
+            //var result = 
+            //    ServerEncoding.GetString(
+            //        await client.UploadValuesTaskAsync(
+            //            "test.php?id=2201326",
+            //            MapCollection(
+            //                NextPageValues(
+            //                    pageBase,
+            //                    navigation
+            //                )
+            //            )
+            //        )
+            //    );
+            var result = await client.UploadStringTaskAsync(
+                "test.php?id=2201326",
+                PrepairUpload(
+                    client,
+                    NextPageValues(
+                        pageBase,
+                        navigation
+                    ),
+                    false
+                )
+            );
             if (!result.Contains(Config.GetRoot("Login Check")?.GetString() ?? ""))
             {
                 Console.WriteLine("## LOGIN SESSION LOST ##");
