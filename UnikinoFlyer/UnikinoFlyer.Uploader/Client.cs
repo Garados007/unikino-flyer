@@ -12,6 +12,7 @@ namespace UnikinoFlyer.Uploader
     static class Client
     {
         static readonly Dictionary<string, string> cookie = new Dictionary<string, string>();
+        static Encoding ServerEncoding = Encoding.UTF8;
 
         private static async Task<T> Run<T>(Func<WebClient, Task<T>> work)
         {
@@ -26,6 +27,7 @@ namespace UnikinoFlyer.Uploader
                 client.Headers.Set(HttpRequestHeader.Referer, "https://wcms.itz.uni-halle.de/test.php");
                 client.Headers.Set("Upgrade-Insecure-Requests", "1");
                 client.Headers.Set(HttpRequestHeader.UserAgent, "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0");
+                client.Encoding = ServerEncoding;
                 var result = await work(client);
                 var values = client.ResponseHeaders.GetValues("Set-Cookie");
                 if (values != null)
@@ -193,19 +195,30 @@ namespace UnikinoFlyer.Uploader
             {
                 Console.WriteLine("Login to " + Config.GetRoot("BaseUrl"));
 
-                var res1 = await client.DownloadStringTaskAsync("test.php?id=2201326&submit=Anmelden");
-                var ind = res1.IndexOf("name=\"PHPSESSID\"");
-                ind = res1.IndexOf("value=\"", ind) + "value=\"".Length;
-                var ind2 = res1.IndexOf('"', ind);
-                var id = cookie["PHPSESSID"] = res1.Substring(ind, ind2 - ind);
+                var result = await client.DownloadStringTaskAsync("test.php?id=2201326&submit=Anmelden");
+                var ind = result.IndexOf("name=\"PHPSESSID\"");
+                ind = result.IndexOf("value=\"", ind) + "value=\"".Length;
+                var ind2 = result.IndexOf('"', ind);
+                var id = cookie["PHPSESSID"] = result.Substring(ind, ind2 - ind);
 
-                var result = Encoding.UTF8.GetString(await client.UploadValuesTaskAsync("test.php?id=2201326", new System.Collections.Specialized.NameValueCollection
+                ind = result.IndexOf("http-equiv=\"content-type\"");
+                if (ind > 0)
+                {
+                    ind = result.IndexOf("charset", ind);
+                    ind = result.IndexOf('=', ind) + 1;
+                    ind2 = result.IndexOf('"', ind);
+                    var charset = result.Substring(ind, ind2 - ind);
+                    ServerEncoding = Encoding.GetEncoding(charset);
+                }
+
+                result = ServerEncoding.GetString(await client.UploadValuesTaskAsync("test.php?id=2201326", new System.Collections.Specialized.NameValueCollection
                 {
                     { "formularname", "login" },
                     { "login_email", Config.GetRoot("User")?.GetString() },
                     { "login_password", Config.GetRoot("PW")?.GetString() },
                     { "submit", "Anmelden" }
                 }));
+
                 if (result.Contains(Config.GetRoot("Login Check")?.GetString()))
                     return HiddenValues(result);
                 else return null;
@@ -256,7 +269,7 @@ namespace UnikinoFlyer.Uploader
             if (pageBase == null) throw new ArgumentNullException(nameof(pageBase));
             if (navigation == null) throw new ArgumentNullException(nameof(navigation));
             var result = 
-                Encoding.UTF8.GetString(
+                ServerEncoding.GetString(
                     await client.UploadValuesTaskAsync(
                         "test.php?id=2201326",
                         MapCollection(
