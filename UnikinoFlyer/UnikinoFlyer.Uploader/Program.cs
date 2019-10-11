@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using System.IO;
 
 namespace UnikinoFlyer.Uploader
 {
@@ -7,7 +10,20 @@ namespace UnikinoFlyer.Uploader
     {
         static async Task Main(string[] args)
         {
-            var home = await Client.Login();
+            Dictionary<string, object> home;
+            try { home = await Client.Login(); }
+            catch (System.Net.WebException ex)
+            {
+                if (ex.Response is System.Net.HttpWebResponse response)
+                {
+                    Console.WriteLine($"Bad status code: {response.StatusCode} ({(int)response.StatusCode})");
+                }
+                else
+                {
+                    Console.WriteLine($"Connection error: {ex}");
+                }
+                return;
+            }
             if (home == null)
             {
                 Console.Error.WriteLine("Login failed");

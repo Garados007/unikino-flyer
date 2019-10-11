@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikinoFlyer.Uploader", "UnikinoFlyer.Uploader\UnikinoFlyer.Uploader.csproj", "{E30F9EA1-71C6-43C2-8C60-4EDAFBC81F74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnikinoFlyer.Uploader", "UnikinoFlyer.Uploader\UnikinoFlyer.Uploader.csproj", "{E30F9EA1-71C6-43C2-8C60-4EDAFBC81F74}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{3D5B4FD3-56B2-4735-953E-BDD0434E6F08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxLib", "External\MaxLib\MaxLib\MaxLib.csproj", "{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxLib.Sqlite", "External\MaxLib\MaxLib.Sqlite\MaxLib.Sqlite.csproj", "{38B41E90-CAF4-4E9B-9065-56282F23664F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikinoFlyer.Data", "UnikinoFlyer.Data\UnikinoFlyer.Data.csproj", "{FFE03A7D-3C99-4FE8-B6BC-24F28DE99B60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnikinoFlyer.Editor", "UnikinoFlyer.Editor\UnikinoFlyer.Editor.csproj", "{835A3CC6-26D5-458E-9FEC-0AE46DC4591C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +29,25 @@ Global
 		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B41E90-CAF4-4E9B-9065-56282F23664F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B41E90-CAF4-4E9B-9065-56282F23664F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B41E90-CAF4-4E9B-9065-56282F23664F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B41E90-CAF4-4E9B-9065-56282F23664F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE03A7D-3C99-4FE8-B6BC-24F28DE99B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE03A7D-3C99-4FE8-B6BC-24F28DE99B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE03A7D-3C99-4FE8-B6BC-24F28DE99B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE03A7D-3C99-4FE8-B6BC-24F28DE99B60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{835A3CC6-26D5-458E-9FEC-0AE46DC4591C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{835A3CC6-26D5-458E-9FEC-0AE46DC4591C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{835A3CC6-26D5-458E-9FEC-0AE46DC4591C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{835A3CC6-26D5-458E-9FEC-0AE46DC4591C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{33CF53AB-644F-4C0E-BCAE-B37706E60FBE} = {3D5B4FD3-56B2-4735-953E-BDD0434E6F08}
+		{38B41E90-CAF4-4E9B-9065-56282F23664F} = {3D5B4FD3-56B2-4735-953E-BDD0434E6F08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8DFF9C5A-760E-46E3-ADB4-95B9A5840017}

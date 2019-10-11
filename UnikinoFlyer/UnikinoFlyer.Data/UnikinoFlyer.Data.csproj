@@ -1,17 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="sqlite" Version="3.13.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.111" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\External\MaxLib\MaxLib.Sqlite\MaxLib.Sqlite.csproj" />
     <ProjectReference Include="..\External\MaxLib\MaxLib\MaxLib.csproj" />
-    <ProjectReference Include="..\UnikinoFlyer.Data\UnikinoFlyer.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,12 +26,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="config.ini">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
