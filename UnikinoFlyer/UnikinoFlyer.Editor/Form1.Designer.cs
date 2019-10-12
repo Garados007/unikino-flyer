@@ -41,7 +41,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.bildUndTextaustauschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.konfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.konfigurationErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.konfigurationBearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.überToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,6 +112,7 @@
             this.beendenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.beendenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
+            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
             // 
             // jobToolStripMenuItem
             // 
@@ -129,6 +129,7 @@
             this.bildcacheAktualisierenToolStripMenuItem.Name = "bildcacheAktualisierenToolStripMenuItem";
             this.bildcacheAktualisierenToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.bildcacheAktualisierenToolStripMenuItem.Text = "Bildcache aktualisieren";
+            this.bildcacheAktualisierenToolStripMenuItem.Click += new System.EventHandler(this.bildcacheAktualisierenToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -144,23 +145,17 @@
             // konfigurationToolStripMenuItem
             // 
             this.konfigurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.konfigurationErstellenToolStripMenuItem,
             this.konfigurationBearbeitenToolStripMenuItem});
             this.konfigurationToolStripMenuItem.Name = "konfigurationToolStripMenuItem";
             this.konfigurationToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.konfigurationToolStripMenuItem.Text = "Konfiguration";
             // 
-            // konfigurationErstellenToolStripMenuItem
-            // 
-            this.konfigurationErstellenToolStripMenuItem.Name = "konfigurationErstellenToolStripMenuItem";
-            this.konfigurationErstellenToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.konfigurationErstellenToolStripMenuItem.Text = "Konfiguration erstellen";
-            // 
             // konfigurationBearbeitenToolStripMenuItem
             // 
             this.konfigurationBearbeitenToolStripMenuItem.Name = "konfigurationBearbeitenToolStripMenuItem";
-            this.konfigurationBearbeitenToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.konfigurationBearbeitenToolStripMenuItem.Text = "Konfiguration bearbeiten";
+            this.konfigurationBearbeitenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.konfigurationBearbeitenToolStripMenuItem.Text = "bearbeiten";
+            this.konfigurationBearbeitenToolStripMenuItem.Click += new System.EventHandler(this.konfigurationBearbeitenToolStripMenuItem_Click);
             // 
             // hilfeToolStripMenuItem
             // 
@@ -221,7 +216,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem bildUndTextaustauschToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem konfigurationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem konfigurationErstellenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem konfigurationBearbeitenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem;

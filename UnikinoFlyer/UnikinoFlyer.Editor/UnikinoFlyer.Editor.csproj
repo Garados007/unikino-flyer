@@ -52,11 +52,41 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DualControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DualControlBase.Designer.cs">
+      <DependentUpon>DualControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileSelector.Designer.cs">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\ConfigEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Job\ConfigEditor.Designer.cs">
+      <DependentUpon>ConfigEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\ConfigHint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Job\ConfigHint.Designer.cs">
+      <DependentUpon>ConfigHint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\InvalidFolderHint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Job\InvalidFolderHint.Designer.cs">
+      <DependentUpon>InvalidFolderHint.cs</DependentUpon>
     </Compile>
     <Compile Include="Job\JobCacheUpdate.cs">
       <SubType>UserControl</SubType>
@@ -64,16 +94,49 @@
     <Compile Include="Job\JobCacheUpdate.Designer.cs">
       <DependentUpon>JobCacheUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Job\JobHintBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Job\JobHintBase.Designer.cs">
+      <DependentUpon>JobHintBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\NoConnection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Job\NoConnection.Designer.cs">
+      <DependentUpon>NoConnection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DualControlBase.resx">
+      <DependentUpon>DualControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileSelector.resx">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Job\ConfigEditor.resx">
+      <DependentUpon>ConfigEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\ConfigHint.resx">
+      <DependentUpon>ConfigHint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\InvalidFolderHint.resx">
+      <DependentUpon>InvalidFolderHint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Job\JobCacheUpdate.resx">
       <DependentUpon>JobCacheUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\JobHintBase.resx">
+      <DependentUpon>JobHintBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\NoConnection.resx">
+      <DependentUpon>NoConnection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,6 +146,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -106,6 +170,11 @@
       <Project>{ffe03a7d-3c99-4fe8-b6bc-24f28de99b60}</Project>
       <Name>UnikinoFlyer.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icons8-file-configuration-96.png" />
+    <Content Include="Resources\icons8-folder-128.png" />
+    <Content Include="Resources\icons8-unavailable-cloud-160.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
