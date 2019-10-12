@@ -7,9 +7,9 @@ using System.Linq;
 using System.IO;
 using MaxLib.Data.HtmlDom;
 
-namespace UnikinoFlyer.Uploader
+namespace UnikinoFlyer.Data
 {
-    static class Client
+    public static class Client
     {
         static readonly Dictionary<string, string> cookie = new Dictionary<string, string>();
         static Encoding ServerEncoding = Encoding.UTF8;
@@ -35,7 +35,7 @@ namespace UnikinoFlyer.Uploader
                     {
                         var p = header.Split(new[] { ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                         if (p.Length == 0) continue;
-                        var kp = p[0].Split('=', 2);
+                        var kp = p[0].Split(new[] { '=' }, 2);
                         if (kp.Length != 2) continue;
                         cookie[System.Web.HttpUtility.UrlDecode(kp[0])] = System.Web.HttpUtility.UrlDecode(kp[1]);
                     }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using MaxLib.Data.IniFiles;
 
-namespace UnikinoFlyer.Uploader
+namespace UnikinoFlyer.Data
 {
-    static class Config
+    public static class Config
     {
         static OptionsLoader options;
 
