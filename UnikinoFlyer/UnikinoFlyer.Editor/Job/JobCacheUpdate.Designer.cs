@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.picture = new System.Windows.Forms.PictureBox();
+            this.progress = new System.Windows.Forms.ProgressBar();
+            this.status = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -71,9 +73,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.picture, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.progress, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.status, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -84,37 +86,42 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(490, 262);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // pictureBox1
+            // picture
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(125, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(239, 207);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picture.Location = new System.Drawing.Point(125, 3);
+            this.picture.Name = "picture";
+            this.picture.Size = new System.Drawing.Size(239, 207);
+            this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picture.TabIndex = 0;
+            this.picture.TabStop = false;
             // 
-            // progressBar1
+            // progress
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.progressBar1, 3);
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar1.Location = new System.Drawing.Point(3, 221);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 5);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(484, 23);
-            this.progressBar1.TabIndex = 1;
+            this.tableLayoutPanel2.SetColumnSpan(this.progress, 3);
+            this.progress.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progress.Location = new System.Drawing.Point(3, 221);
+            this.progress.Margin = new System.Windows.Forms.Padding(3, 8, 3, 5);
+            this.progress.Name = "progress";
+            this.progress.Size = new System.Drawing.Size(484, 23);
+            this.progress.TabIndex = 1;
             // 
-            // label1
+            // status
             // 
-            this.label1.AutoSize = true;
-            this.tableLayoutPanel2.SetColumnSpan(this.label1, 3);
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(3, 249);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(484, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Download 0 / 0 - Page 0 / 0";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.status.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.status, 3);
+            this.status.Dock = System.Windows.Forms.DockStyle.Top;
+            this.status.Location = new System.Drawing.Point(3, 249);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(484, 13);
+            this.status.TabIndex = 2;
+            this.status.Text = "Download 0 / 0 - Page 0 / 0";
+            this.status.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // JobCacheUpdate
             // 
@@ -128,7 +135,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -138,8 +145,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox picture;
+        private System.Windows.Forms.ProgressBar progress;
+        private System.Windows.Forms.Label status;
+        private System.Windows.Forms.Timer timer1;
     }
 }

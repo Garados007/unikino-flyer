@@ -19,5 +19,12 @@ namespace UnikinoFlyer.Data
             if (key == null) throw new ArgumentNullException(nameof(key));
             return options?[0].Options.FindName(key);
         }
+
+        public static void SetOptionsRoot(OptionsGroup group)
+        {
+            options = new OptionsLoader();
+            foreach (var e in group.Options)
+                options[0].Options.Add(e);
+        }
     }
 }

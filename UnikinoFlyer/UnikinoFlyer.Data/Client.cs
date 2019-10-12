@@ -286,6 +286,12 @@ namespace UnikinoFlyer.Data
 
         private static async Task<Dictionary<string, object>> DoValueRequest(WebClient client, Dictionary<string, object> pageBase, Dictionary<string, object> navigation)
         {
+            var result = await DoValueRequestRaw(client, pageBase, navigation);
+            return result != null ? HiddenValues(result) : null;
+        }
+
+        private static async Task<string> DoValueRequestRaw(WebClient client, Dictionary<string, object> pageBase, Dictionary<string, object> navigation)
+        {
             if (client == null) throw new ArgumentNullException(nameof(client));
             if (pageBase == null) throw new ArgumentNullException(nameof(pageBase));
             if (navigation == null) throw new ArgumentNullException(nameof(navigation));
@@ -317,7 +323,7 @@ namespace UnikinoFlyer.Data
                 Console.WriteLine("## LOGIN SESSION LOST ##");
                 return null;
             }
-            return HiddenValues(result);
+            return result;
         }
 
         public static Task<bool> SwitchImage(Dictionary<string, object> home, string imageKey, string comment)
@@ -413,6 +419,60 @@ namespace UnikinoFlyer.Data
                 ids.Add("publishPage.x", "12");
                 ids.Add("publishPage.y", "17");
                 var conf2 = await DoValueRequest(client, conf1, ids);
+            });
+        }
+
+        public static Task<Tuple<int,Dictionary<string, object>>> NavToImgLib(Dictionary<string, object> home)
+        {
+            if (home == null) throw new ArgumentNullException(nameof(home));
+            return Run(async client =>
+            {
+                Console.WriteLine("Navigate to image library");
+
+                var result = await DoValueRequestRaw(client, home, new Dictionary<string, object>
+                {
+                    { "openImageDb[0][rightCol]", "Bilddatenbank öffnen" }
+                });
+                var conf1 = HiddenValues(result);
+                var dom = HtmlDomParser.ParseHtml(result);
+                var maxPage = dom
+                    .DeepSearch()
+                    .TagName("select")
+                    .Attribute("name", "numberOfImagePage")
+                    .SelectMany(e => e.Elements)
+                    .TagName("option")
+                    .SelectMany(e => e.GetAttribute("value"))
+                    .Select(e => int.TryParse(e.Value, out int v) ? new Tuple<int>(v) : null)
+                    .Where(t => t != null)
+                    .Select(t => t.Item1)
+                    .Max() + 1;
+
+                return new Tuple<int, Dictionary<string, object>>(maxPage, conf1);
+            });
+        }
+
+        public static Task<string[]> FetchImgSrc(int page, Dictionary<string, object> imgLib)
+        {
+            if (page < 0) throw new ArgumentOutOfRangeException(nameof(page));
+            if (imgLib == null) throw new ArgumentNullException(nameof(imgLib));
+            return Run(async client =>
+            {
+                Console.WriteLine("Fetch image library page " + page.ToString());
+                var result = await DoValueRequestRaw(client, imgLib, new Dictionary<string, object>
+                {
+                    { "numberOfImagePage", page.ToString() },
+                    { "aktualiseren.x", "32" },
+                    { "aktualiseren.y", "16" }
+                });
+                var imgList = HtmlDomParser.ParseHtml(result)
+                    .DeepSearch()
+                    .TagName("img")
+                    .Class("bild111")
+                    .Select(e => e.Parent)
+                    .SelectMany(e => e.GetAttribute("href"))
+                    .Select(a => a.Value);
+
+                return imgList.ToArray();
             });
         }
     }

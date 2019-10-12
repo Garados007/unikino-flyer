@@ -22,12 +22,15 @@ namespace UnikinoFlyer.Editor.Job
             EnableSideControl = false;
         }
 
+        bool load = false;
         protected override void OnLoad(EventArgs e)
         {
+            load = true;
             base.OnLoad(e);
             if (File.Exists("config.ini"))
             {
                 config = new OptionsLoader("config.ini", false);
+                fileSelector1.FileName = config[0].Options.GetString("ImageMirror", "");
                 var group = config.Get("Uploader")?.Options;
                 if (group != null)
                 {
@@ -40,12 +43,15 @@ namespace UnikinoFlyer.Editor.Job
                 }
             }
             else config = new OptionsLoader();
+            load = false;
         }
 
         ulong changeId = 0;
 
         private void tbChanged(object sender, EventArgs e)
         {
+            if (load) return;
+
             //main group
             var opts = config[0].Options;
             opts.Clear();
