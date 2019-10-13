@@ -85,6 +85,12 @@
     <Compile Include="Job\ConfigHint.Designer.cs">
       <DependentUpon>ConfigHint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Job\FileFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Job\FileFilter.Designer.cs">
+      <DependentUpon>FileFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Job\InvalidFolderHint.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Job\ConfigHint.resx">
       <DependentUpon>ConfigHint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\FileFilter.resx">
+      <DependentUpon>FileFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\InvalidFolderHint.resx">
       <DependentUpon>InvalidFolderHint.cs</DependentUpon>

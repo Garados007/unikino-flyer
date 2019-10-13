@@ -59,5 +59,13 @@ namespace UnikinoFlyer.Editor
         {
             return true;
         }
+
+        public void Invoke(Action action)
+        {
+            if (action == null) throw new ArgumentNullException(nameof(action));
+            if (InvokeRequired)
+                base.Invoke(action);
+            else action();
+        }
     }
 }

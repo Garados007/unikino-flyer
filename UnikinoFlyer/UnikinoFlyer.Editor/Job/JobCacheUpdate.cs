@@ -130,14 +130,6 @@ namespace UnikinoFlyer.Editor.Job
             }
         }
 
-        private void Invoke(Action action)
-        {
-            if (action == null) throw new ArgumentNullException(nameof(action));
-            if (InvokeRequired)
-                base.Invoke(action);
-            else action();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             status.Text = $"Download {currentImg} / {maxImgCount} - " +

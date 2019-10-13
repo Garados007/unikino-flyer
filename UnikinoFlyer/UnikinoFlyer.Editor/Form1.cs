@@ -138,5 +138,10 @@ namespace UnikinoFlyer.Editor
         {
             SetMainControl(new Job.JobCacheUpdate());
         }
+
+        private void bildcacheFilternToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetMainControl(new Job.FileFilter());
+        }
     }
 }

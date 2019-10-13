@@ -45,6 +45,7 @@
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.überToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.bildcacheFilternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
@@ -80,37 +81,37 @@
             // 
             this.neuToolStripMenuItem.Name = "neuToolStripMenuItem";
             this.neuToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.neuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.neuToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.neuToolStripMenuItem.Text = "Neu";
             // 
             // ladenToolStripMenuItem
             // 
             this.ladenToolStripMenuItem.Name = "ladenToolStripMenuItem";
             this.ladenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.ladenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ladenToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.ladenToolStripMenuItem.Text = "Laden";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
             // 
             // zuletztGeöffnetToolStripMenuItem
             // 
             this.zuletztGeöffnetToolStripMenuItem.Name = "zuletztGeöffnetToolStripMenuItem";
-            this.zuletztGeöffnetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zuletztGeöffnetToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.zuletztGeöffnetToolStripMenuItem.Text = "Zuletzt geöffnet";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(159, 6);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
             this.beendenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
             // 
@@ -118,6 +119,7 @@
             // 
             this.jobToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bildcacheAktualisierenToolStripMenuItem,
+            this.bildcacheFilternToolStripMenuItem,
             this.toolStripSeparator3,
             this.bildUndTextaustauschToolStripMenuItem});
             this.jobToolStripMenuItem.Name = "jobToolStripMenuItem";
@@ -168,7 +170,7 @@
             // überToolStripMenuItem
             // 
             this.überToolStripMenuItem.Name = "überToolStripMenuItem";
-            this.überToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.überToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.überToolStripMenuItem.Text = "Über";
             this.überToolStripMenuItem.Click += new System.EventHandler(this.überToolStripMenuItem_Click);
             // 
@@ -180,6 +182,13 @@
             this.splitContainer1.Size = new System.Drawing.Size(800, 387);
             this.splitContainer1.SplitterDistance = 177;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // bildcacheFilternToolStripMenuItem
+            // 
+            this.bildcacheFilternToolStripMenuItem.Name = "bildcacheFilternToolStripMenuItem";
+            this.bildcacheFilternToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.bildcacheFilternToolStripMenuItem.Text = "Bildcache filtern";
+            this.bildcacheFilternToolStripMenuItem.Click += new System.EventHandler(this.bildcacheFilternToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -220,6 +229,7 @@
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripMenuItem bildcacheFilternToolStripMenuItem;
     }
 }
 

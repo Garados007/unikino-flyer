@@ -13,6 +13,7 @@ namespace UnikinoFlyer.Editor.Job
     public partial class InvalidFolderHint : JobHintBase
     {
         string folder;
+        DualControlBase switchTarget;
 
         public InvalidFolderHint(string folder)
         {
@@ -20,6 +21,12 @@ namespace UnikinoFlyer.Editor.Job
             Option1Click += InvalidFolderHint_Option1Click;
             Option2Click += InvalidFolderHint_Option2Click;
             this.folder = folder;
+        }
+
+        public InvalidFolderHint(string folder, DualControlBase switchTarget)
+            : this(folder)
+        {
+            this.switchTarget = switchTarget;
         }
 
         private void InvalidFolderHint_Option2Click(object sender, EventArgs e)
@@ -32,7 +39,7 @@ namespace UnikinoFlyer.Editor.Job
             try
             {
                 System.IO.Directory.CreateDirectory(folder);
-                DoSwitchMainControl(new JobCacheUpdate());
+                DoSwitchMainControl(switchTarget ?? new JobCacheUpdate());
             }
             catch (Exception ex)
             {
